@@ -101,3 +101,20 @@ GET / HTTP/1.1
 The request has a request line followed by three header fields. The request line
 includes the path of the URI (`/`). The `Host` header field holds the address
 of the host.
+
+## Domain Name System
+
+Domain Name System (DNS) resolution is a separate concern from writing
+to a socket. First use DNS to translate a name to an IP address. Then
+use the IP address to configure your socket.
+
+## Transport Layer Security
+
+Transport Layer Security (TLS) is a separate concern from writing to
+a socket. First use TLS to agree on a session key. Then use encrypted
+payloads with your socket. 
+
+## References
+
+* [Anatomy of a Web Request](https://robrich.org/slides/anatomy_of_a_web_request/#/)
+* [A Typical HTTP Session](https://developer.mozilla.org/en-US/docs/Web/HTTP/Session)
