@@ -1,4 +1,4 @@
-hello-socket.c
+# hello-socket.c
 
 Creates a socket and makes an HTTP GET request.
 
@@ -9,9 +9,11 @@ Creates a socket and makes an HTTP GET request.
 
     ./hello-socket.exe
 
+## Notes
+
 The `socket` function creates a socket and returns a file descriptor.
 For information about the `socket` function and the `sockaddr_in` struct, see
-https://linux.die.net/man/7/socket](https://linux.die.net/man/7/socket).
+[https://linux.die.net/man/7/socket](https://linux.die.net/man/7/socket).
 
 ```
 sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -38,7 +40,8 @@ To make a GET request, write to the socket.
 write(sockfd, "GET / \r\n", 8);
 ```
 
-The response is in `buffer`. Write the contents of `bufferr` to stdout.
+To get the response, read from the socket into `buffer`. Also write each
+character to stdout.
 
 ```
 while( (i=read(sockfd, buffer, 8196)) > 0)
