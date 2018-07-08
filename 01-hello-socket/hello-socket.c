@@ -28,8 +28,3 @@ main()
       write(1,buffer,i);
 }
 
-// https://www.gnu.org/software/libc/manual/html_node/index.html
-// https://linux.die.net/man/2/socket
-// The socket function returns a file descriptor.
-// The serv_addr.xxx lines look complicated, but all they do is specify the host address and port.
-// Connect the file descriptor to the server address.
