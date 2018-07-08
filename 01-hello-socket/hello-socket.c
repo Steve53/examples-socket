@@ -24,7 +24,7 @@ main()
    write(sockfd, "GET / \r\n", 8);
    // write(sockfd, "GET /~arnoldf/ \r\n", 17);
 
-   while( (i=read(sockfd,buffer,8196)) > 0)
-      write(1,buffer,i);
+   while( (i = read(sockfd, buffer, 8196)) > 0 )
+      write(1, buffer, i);
 }
 
