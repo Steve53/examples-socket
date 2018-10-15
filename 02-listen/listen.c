@@ -18,7 +18,7 @@ int main( int argc, char *argv[] ) {
    char* env_port = NULL;
    char* env_ip_addr = NULL;
    in_port_t portno = htons(8080);
-   uint32_t ip_address = inet_addr("192.168.1.13");
+   uint32_t ip_address = INADDR_ANY;
 
    env_port = getenv("PORT");
 
