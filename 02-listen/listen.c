@@ -11,10 +11,26 @@
 void doprocessing (int sock);
 
 int main( int argc, char *argv[] ) {
-   int sockfd, newsockfd, portno, clilen;
+   int sockfd, newsockfd, clilen;
    char buffer[256];
    struct sockaddr_in serv_addr, cli_addr;
    int n, pid;
+   char* env_port = NULL;
+   char* env_ip_addr = NULL;
+   in_port_t portno = htons(8080);
+   uint32_t ip_address = inet_addr("192.168.1.13");
+
+   env_port = getenv("PORT");
+
+   if(env_port) {
+      portno = htons(atoi(env_port));
+   }
+
+   env_ip_addr = getenv("IP_ADDRESS");
+
+   if(env_ip_addr) {
+      ip_address = inet_addr(env_ip_addr);
+   }
    
    /* First call to socket() function */
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -26,11 +42,15 @@ int main( int argc, char *argv[] ) {
    
    /* Initialize socket structure */
    bzero((char *) &serv_addr, sizeof(serv_addr));
-   portno = 5001;
-   
+
    serv_addr.sin_family = AF_INET;
-   serv_addr.sin_addr.s_addr = INADDR_ANY;
-   serv_addr.sin_port = htons(portno);
+   serv_addr.sin_port = portno;
+   serv_addr.sin_addr.s_addr = ip_address;
+
+   printf("port: %d\n", serv_addr.sin_port);
+   printf("ip address: %x\n", serv_addr.sin_addr.s_addr); 
+
+
    
    /* Now bind the host address using bind() call.*/
    if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
